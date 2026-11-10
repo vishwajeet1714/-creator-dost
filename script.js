@@ -1,195 +1,132 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+const tools = {
+  caption: {
+    title: "✍️ Caption Generator",
+    description: "Create captions for your next Instagram post."
+  },
+  bio: {
+    title: "💜 Bio Generator",
+    description: "Create your own stylish Instagram bio."
+  },
+  hashtags: {
+    title: "#️⃣ Hashtag Generator",
+    description: "Find hashtags for your content."
+  },
+  reels: {
+    title: "🎬 Reel Ideas Generator",
+    description: "Discover ideas for your next viral reel."
+  }
+};
+
+function showTool(type) {
+  const tool = tools[type];
+
+  if (!tool) return;
+
+  document.getElementById("tool-title").textContent = tool.title;
+  document.getElementById("tool-description").textContent = tool.description;
+
+  const form = document.getElementById("tool-form");
+  const result = document.getElementById("tool-result");
+
+  result.innerHTML = "";
+
+  form.innerHTML = `
+    <input
+      id="creator-input"
+      type="text"
+      placeholder="Enter your topic or niche..."
+      maxlength="100"
+      style="width:100%;padding:14px;margin:20px 0;
+      background:#090914;color:white;border:1px solid #48316c;
+      border-radius:10px;font-size:16px;"
+    >
+
+    <button onclick="generateContent('${type}')">
+      Generate Now ✨
+    </button>
+  `;
+
+  document.getElementById("workspace").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #090914;
-  color: #fff;
-  min-height: 100vh;
-}
+function generateContent(type) {
+  const input = document.getElementById("creator-input");
+  const result = document.getElementById("tool-result");
+  const topic = input.value.trim();
 
-.navbar {
-  padding: 22px 7%;
-  background: #111020;
-  border-bottom: 1px solid #29233e;
-}
-
-.navbar h1 {
-  font-size: 27px;
-  color: #c5a3ff;
-}
-
-.navbar h1 span {
-  color: #a56cff;
-}
-
-.navbar p {
-  color: #aaa3bd;
-  margin-top: 6px;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 25px;
-}
-
-.hero {
-  padding: 65px 25px;
-  text-align: center;
-  background: linear-gradient(135deg, #241345, #111126);
-  border: 1px solid #48316c;
-  border-radius: 22px;
-  margin: 25px 0 55px;
-}
-
-.tag {
-  display: inline-block;
-  color: #d2b7ff;
-  background: #39245c;
-  padding: 9px 16px;
-  border-radius: 30px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-bottom: 22px;
-}
-
-.hero h2 {
-  font-size: clamp(32px, 6vw, 52px);
-  margin-bottom: 15px;
-  background: linear-gradient(90deg, #fff, #bc91ff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  color: #c2bbd3;
-  font-size: 17px;
-  line-height: 1.6;
-}
-
-.tools {
-  margin-bottom: 55px;
-}
-
-.tools > h2,
-.workspace h2,
-.about h2 {
-  font-size: 25px;
-  margin-bottom: 25px;
-}
-
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.tool-card {
-  background: #151425;
-  border: 1px solid #302744;
-  border-radius: 18px;
-  padding: 25px;
-  transition: 0.3s ease;
-}
-
-.tool-card:hover {
-  transform: translateY(-5px);
-  border-color: #a56cff;
-  box-shadow: 0 10px 35px #9a55ff18;
-}
-
-.tool-icon {
-  font-size: 32px;
-  margin-bottom: 18px;
-}
-
-.tool-card h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.tool-card p {
-  color: #aaa5bc;
-  line-height: 1.6;
-  margin-bottom: 22px;
-}
-
-button {
-  background: linear-gradient(90deg, #8b52e8, #b16cff);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.85;
-}
-
-.workspace {
-  background: #151425;
-  border: 1px solid #302744;
-  padding: 30px;
-  border-radius: 18px;
-  margin-bottom: 50px;
-  min-height: 180px;
-}
-
-.workspace p,
-.about p {
-  color: #aaa5bc;
-  line-height: 1.7;
-}
-
-.about {
-  text-align: center;
-  padding: 35px 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 25px 15px;
-  color: #89839d;
-  background: #111020;
-  border-top: 1px solid #29233e;
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 16px;
+  if (!topic) {
+    result.textContent = "Please enter a topic first!";
+    return;
   }
 
-  .navbar {
-    padding: 20px;
+  let output = "";
+
+  if (type === "caption") {
+    output = [
+      `✨ ${topic} — a moment worth remembering!`,
+      `Life feels better when it's all about ${topic}. ❤️`,
+      `Creating memories, one ${topic} at a time. 📸`,
+      `Some moments need no words, just ${topic}. ✨`
+    ];
   }
 
-  .hero {
-    padding: 48px 18px;
-    margin: 20px 0 40px;
+  else if (type === "bio") {
+    output = [
+      `✨ ${topic} enthusiast\n📸 Creating my own story\n❤️ Living one day at a time`,
+      `🌸 ${topic} lover\n🚀 Dream big, create bigger\n✨ Welcome to my world`,
+      `💜 Passionate about ${topic}\n📍 Making memories\n🎯 Just getting started`
+    ];
   }
 
-  .hero p {
-    font-size: 15px;
+  else if (type === "hashtags") {
+    const clean = topic.toLowerCase().replace(/[^a-z0-9]/g, "");
+    output = [
+      `#${clean} #${clean}lover #${clean}life #${clean}vibes #explore #instagood #contentcreator #reelsinstagram #trending #creator`
+    ];
   }
 
-  .tool-grid {
-    grid-template-columns: 1fr;
+  else if (type === "reels") {
+    output = [
+      `🎬 Make a day-in-my-life reel about ${topic}.`,
+      `🎬 Show 3 things people don't know about ${topic}.`,
+      `🎬 Create a before-and-after transformation featuring ${topic}.`,
+      `🎬 Make a cinematic montage of ${topic}.`,
+      `🎬 Share your personal story related to ${topic}.`
+    ];
   }
 
-  .tool-card {
-    padding: 22px;
-  }
+  const selected = Array.isArray(output)
+    ? output[Math.floor(Math.random() * output.length)]
+    : output;
 
-  .workspace {
-    padding: 22px;
-  }
+  result.innerHTML = `
+    <div style="margin-top:25px;padding:20px;
+    background:#211638;border:1px solid #6845a0;
+    border-radius:12px;">
+      <h3 style="margin-bottom:15px;color:#c5a3ff;">
+        Your Result ✨
+      </h3>
+      <p id="generated-output"
+      style="white-space:pre-line;line-height:1.8;color:white;"></p>
+      <button id="copy-result" style="margin-top:18px;">
+        📋 Copy Result
+      </button>
+    </div>
+  `;
+
+  document.getElementById("generated-output").textContent = selected;
+
+  document.getElementById("copy-result").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(selected);
+      document.getElementById("copy-result").textContent = "Copied! ✅";
+    } catch {
+      document.getElementById("copy-result").textContent =
+        "Copy unavailable. Please select the text manually.";
     }
+  });
+}
