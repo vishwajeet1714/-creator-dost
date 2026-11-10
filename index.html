@@ -4,21 +4,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free creative tools for content creators.">
-  <title>Creator Dost | Tools for Creators</title>
+  <meta name="description" content="Free tools for Instagram creators. Generate captions, bios, hashtags and reel ideas with Creator Dost.">
+  <title>Creator Dost - Tools for Creators</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>Creator Dost</h1>
-    <p>Your creative journey starts here.</p>
+  <header class="navbar">
+    <h1>Creator Dost <span>✦</span></h1>
+    <p>Your creative partner.</p>
   </header>
 
-  <main>
-    <h2>Tools made for creators ❤️</h2>
-    <p>Everything you need to create better content.</p>
+  <main class="container">
+
+    <section class="hero">
+      <span class="tag">YOUR CREATOR TOOLKIT ✨</span>
+      <h2>Create. Express. Grow.</h2>
+      <p>Everything you need to make your content stand out.</p>
+    </section>
+
+    <section class="tools">
+      <h2>Explore Creator Tools</h2>
+
+      <div class="tool-grid">
+
+        <article class="tool-card">
+          <div class="tool-icon">✍️</div>
+          <h3>Caption Generator</h3>
+          <p>Create amazing Instagram captions.</p>
+          <button onclick="showTool('caption')">Try Now →</button>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">💜</div>
+          <h3>Bio Generator</h3>
+          <p>Create a stylish Instagram bio.</p>
+          <button onclick="showTool('bio')">Try Now →</button>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">#️⃣</div>
+          <h3>Hashtag Generator</h3>
+          <p>Find hashtags for your content.</p>
+          <button onclick="showTool('hashtags')">Try Now →</button>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">🎬</div>
+          <h3>Reel Ideas</h3>
+          <p>Get fresh ideas for your next reel.</p>
+          <button onclick="showTool('reels')">Try Now →</button>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="workspace" id="workspace">
+      <h2 id="tool-title">Let's Create Something!</h2>
+      <p id="tool-description">Select any tool above to get started.</p>
+
+      <div id="tool-form"></div>
+      <div id="tool-result" aria-live="polite"></div>
+    </section>
+
+    <section class="about">
+      <h2>Made for Creators ❤️</h2>
+      <p>Simple, free and useful tools to help every creator grow.</p>
+    </section>
+
   </main>
+
+  <footer>
+    <p>© 2026 Creator Dost. Made with ❤️ for creators.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
